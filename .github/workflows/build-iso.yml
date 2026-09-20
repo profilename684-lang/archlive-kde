@@ -1,0 +1,39 @@
+name: Build ISO
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo rm -rf /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
+          df -h /
+
+      - name: Build ISO in an Arch container
+        run: |
+          mkdir -p /tmp/out
+          docker run --privileged --rm \
+            -v "${{ github.workspace }}:/profile-src:ro" \
+            -v /tmp/out:/out \
+            archlinux:latest \
+            bash -c "cp -a /profile-src /profile && /profile/docker/build-in-container.sh"
+
+      - name: Show result
+        run: ls -lh /tmp/out
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: archlive-kde-iso
+          path: /tmp/out/*.iso
+          retention-days: 7
+          compression-level: 0

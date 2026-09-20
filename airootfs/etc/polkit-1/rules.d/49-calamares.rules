@@ -1,0 +1,18 @@
+/* The live user is not in wheel and has no sudoers entry, so authorise the
+   installer explicitly. This rule only exists on the live medium. */
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.policykit.exec" &&
+        action.lookup("program") == "/usr/bin/calamares" &&
+        subject.user == "liveuser") {
+        return polkit.Result.YES;
+    }
+});
+
+/* Allow the live user to mount/unmount and manage disks while poking around
+   before installing. */
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.udisks2.") == 0 &&
+        subject.user == "liveuser") {
+        return polkit.Result.YES;
+    }
+});

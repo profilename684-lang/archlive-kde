@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Creates the unprivileged live-session user.
+# NOTE: deliberately NOT added to the wheel group and no sudoers drop-in is
+# written. Privilege escalation for the installer goes through polkit instead
+# (see /etc/polkit-1/rules.d/49-calamares.rules).
+set -e
+LIVEUSER="liveuser"
+
+if ! id -u "$LIVEUSER" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash -c "Live User" -G video,audio,storage,optical,network,rfkill "$LIVEUSER"
+    passwd -d "$LIVEUSER"
+fi
+
+# root stays password-less on the live medium only; the installed system gets
+# its own root password from Calamares.
+passwd -d root

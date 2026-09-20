@@ -1,0 +1,3 @@
+ALL_kver="/boot/vmlinuz-linux"
+PRESETS=('archiso')
+archiso_image="/boot/initramfs-linux.img"

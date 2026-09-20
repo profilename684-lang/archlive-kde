@@ -1,0 +1,13 @@
+[Unit]
+Description=Set up the live session user
+After=systemd-tmpfiles-setup.service
+Before=display-manager.service
+ConditionKernelCommandLine=archisobasedir
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/live-setup
+
+[Install]
+WantedBy=multi-user.target

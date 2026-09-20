@@ -1,0 +1,106 @@
+# --- base system ---
+base
+linux
+linux-firmware
+linux-firmware-marvell
+amd-ucode
+intel-ucode
+mkinitcpio
+mkinitcpio-archiso
+mkinitcpio-nfs-utils
+syslinux
+edk2-shell
+memtest86+-efi
+
+# --- filesystems & disks ---
+btrfs-progs
+dosfstools
+e2fsprogs
+exfatprogs
+f2fs-tools
+xfsprogs
+ntfs-3g
+gptfdisk
+parted
+cryptsetup
+lvm2
+mdadm
+udftools
+nilfs-utils
+
+# --- networking ---
+networkmanager
+plasma-nm
+iwd
+wireless-regdb
+dhcpcd
+openssh
+wget
+curl
+rsync
+bind
+
+# --- boot & firmware ---
+grub
+efibootmgr
+os-prober
+
+# --- desktop: KDE Plasma ---
+xorg-server
+xorg-xwayland
+plasma-meta
+plasma-workspace
+kde-applications-meta
+sddm
+dolphin
+konsole
+kate
+ark
+gwenview
+spectacle
+okular
+partitionmanager
+firefox
+
+# --- fonts ---
+noto-fonts
+noto-fonts-emoji
+noto-fonts-cjk
+ttf-dejavu
+
+# --- audio ---
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+alsa-utils
+sof-firmware
+
+# --- installer ---
+calamares
+kpmcore
+squashfs-tools
+arch-install-scripts
+polkit
+qt6-svg
+qt6-declarative
+kirigami
+libpwquality
+
+# --- misc utilities ---
+sudo
+nano
+vim
+git
+htop
+man-db
+man-pages
+usbutils
+pciutils
+smartmontools
+terminus-font
+zsh
+bash-completion
+reflector
+archinstall
