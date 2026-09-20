@@ -37,3 +37,4 @@ jobs:
           path: /tmp/out/*.iso
           retention-days: 7
           compression-level: 0
+# trigger
